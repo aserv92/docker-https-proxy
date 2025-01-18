@@ -23,3 +23,7 @@ RUN set -eux; \
     mkdir -p /var/getssl/; \
     mkdir -p /etc/nginx/ssl/; \
     chmod 700 /usr/local/bin/getssl;
+
+COPY supervisor/supervisord.conf /etc/supervisord.conf
+
+CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
