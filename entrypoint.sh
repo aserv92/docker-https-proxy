@@ -92,7 +92,7 @@ config.domain.write ACL "/var/www/acme-challenge/"
 
 config.domain.write USE_SINGLE_ACL true
 
-config.domain.write PREFERRED_CHAIN ''
+config.domain.write PREFERRED_CHAIN "${PREFERRED_CHAIN:-}"
 
 config.domain.write DOMAIN_CERT_LOCATION "/var/ssl/${DOMAIN_NAME}.crt"
 

@@ -25,6 +25,7 @@ These variables are used to configure get-ssl. See https://github.com/srvrco/get
 - `ACCOUNT_KEY_TYPE`
 - `REUSE_PRIVATE_KEY`
 - `RENEW_ALLOW`
+- `PREFERRED_CHAIN`
 
 #### Other
 - `SANS` A list of SANS and proxy to addresses to request the certificate for (ex: `www.yourdomain.com:http://yourwebsite.local,blog.yourwebsite.com:http://yourblog.local`)
