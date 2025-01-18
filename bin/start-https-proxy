@@ -1,0 +1,18 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+mkdir -p $(pwd)/tmp/ssl/
+
+docker run \
+  -it \
+  -p 80:80 \
+  -p 443:443 \
+  -e DOMAIN_NAME=yourdomain.com \
+  -e PROXY_TO=http://yourwebsite.local \
+  -e SANS=www.yourdomain.com:http://yourwebsite.local,blog.yourwebsite.com:http://yourblog.local \
+  -e ACCOUNT_EMAIL=you@yourdomain.com \
+  -v $(pwd)/tmp/ssl/:/var/ssl/ \
+  --rm \
+  aserv92/https-proxy:latest \
+  "$@"
