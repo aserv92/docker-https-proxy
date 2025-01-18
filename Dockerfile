@@ -30,4 +30,8 @@ COPY supervisor/nginx.conf /etc/supervisor.d/nginx.conf
 
 COPY nginx/domain.conf.template /etc/nginx/http.d/domain.conf.template
 
+COPY entrypoint.sh /usr/local/bin/http-proxy-entrypoint.sh
+
+ENTRYPOINT ["/usr/local/bin/http-proxy-entrypoint.sh"]
+
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
