@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+while true; do
+  getssl -w /etc/getssl/ --nocheck -a
+
+  sleep 3600
+done

@@ -28,7 +28,11 @@ COPY supervisor/supervisord.conf /etc/supervisord.conf
 
 COPY supervisor/nginx.conf /etc/supervisor.d/nginx.conf
 
+COPY supervisor/get-ssl.conf /etc/supervisor.d/get-ssl.conf
+
 COPY nginx/domain.conf.template /etc/nginx/http.d/domain.conf.template
+
+COPY get-ssl/get-ssld /usr/local/bin/get-ssld
 
 COPY entrypoint.sh /usr/local/bin/http-proxy-entrypoint.sh
 
