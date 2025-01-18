@@ -17,7 +17,13 @@ RUN set -eux; \
     apk add --no-cache supervisor; \
     apk add --no-cache nginx; \
     rm -rf /var/cache/apk/*; \
-    curl --silent https://raw.githubusercontent.com/srvrco/getssl/v${GETSSL_VERSION}/getssl > /usr/local/bin/getssl; \
+    curl -L -o "/tmp/getssl-${GETSSL_VERSION}.tar.gz" "https://github.com/srvrco/getssl/archive/refs/tags/v${GETSSL_VERSION}.tar.gz"; \
+    tar -xzf "/tmp/getssl-${GETSSL_VERSION}.tar.gz" -C "/tmp/"; \
+    cp "/tmp/getssl-${GETSSL_VERSION}/getssl" /usr/local/bin/getssl; \
+    mkdir -p /usr/share/getssl/dns_scripts/; \
+    cp -r "/tmp/getssl-${GETSSL_VERSION}/dns_scripts/" "/usr/share/getssl/"; \
+    rm "/tmp/getssl-${GETSSL_VERSION}.tar.gz"; \
+    rm -r "/tmp/getssl-${GETSSL_VERSION}"; \
     mkdir -p /var/www/acme-challenge/; \
     mkdir -p /etc/getssl/; \
     mkdir -p /var/getssl/; \

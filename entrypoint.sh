@@ -88,9 +88,16 @@ parser.get.only.domains.from.sans.string() {
 
 config.domain.write SANS "$(parser.get.only.domains.from.sans.string "${SANS:-}")"
 
-config.domain.write ACL "/var/www/acme-challenge/"
+if [[ "${VALIDATE_VIA_DNS:-}" == 'true' ]]; then
+  assert.env.var.exists DNS_PROVIDER
 
-config.domain.write USE_SINGLE_ACL true
+  config.global.write VALIDATE_VIA_DNS true
+  config.global.write DNS_ADD_COMMAND "/usr/share/getssl/dns_scripts/dns_add_${DNS_PROVIDER}"
+  config.global.write DNS_DEL_COMMAND "/usr/share/getssl/dns_scripts/dns_del_${DNS_PROVIDER}"
+else
+  config.domain.write USE_SINGLE_ACL true
+  config.domain.write ACL "/var/www/acme-challenge/"
+fi
 
 config.domain.write PREFERRED_CHAIN "${PREFERRED_CHAIN:-}"
 
