@@ -28,4 +28,6 @@ COPY supervisor/supervisord.conf /etc/supervisord.conf
 
 COPY supervisor/nginx.conf /etc/supervisor.d/nginx.conf
 
+COPY nginx/domain.conf.template /etc/nginx/http.d/domain.conf.template
+
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
