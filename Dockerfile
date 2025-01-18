@@ -26,4 +26,6 @@ RUN set -eux; \
 
 COPY supervisor/supervisord.conf /etc/supervisord.conf
 
+COPY supervisor/nginx.conf /etc/supervisor.d/nginx.conf
+
 CMD ["/usr/bin/supervisord", "-c", "/etc/supervisord.conf"]
