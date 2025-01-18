@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+GETSSL_VERSION="${1:-2.49}"
+
+REPOSITORY=aserv92/https-proxy
+
+docker buildx \
+  build \
+  --push \
+  -t "${REPOSITORY}:latest" \
+  -t "${REPOSITORY}:${GETSSL_VERSION}" \
+  -t "${REPOSITORY}:${GETSSL_VERSION}-$(date +%Y-%m-%d-%H-%M-%S)" \
+  --build-arg "GETSSL_VERSION=${GETSSL_VERSION}" \
+  --platform linux/amd64,linux/arm64 \
+  .
