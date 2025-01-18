@@ -1,6 +1,8 @@
 # Docker HTTPS Proxy
 A docker image for providing secure HTTPS connections for web servers not using SSL.
 
+[View on Dockerhub](https://hub.docker.com/repository/docker/aserv92/https-proxy/)
+
 ## How it Works
 The environment variables described below are used to generate configuration files for [get-ssl](https://github.com/srvrco/getssl). This image runs a nginx web server and a get-ssl deamon. The nginx web server and listens for HTTP and HTTPS requests on their respective ports. HTTP requests are redirected to HTTPS and HTTPS requests are forwarded to the target webserver. When the image starts and once an hour the get-ssl daemon checks if it is time to request and install new SSL certificate and installs them when it is time. If no SSL cert exists when the image is sstarted then one will be created.
 
