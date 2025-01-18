@@ -2,16 +2,20 @@
 
 set -euo pipefail
 
-GETSSL_VERSION="${1:-2.49}"
+export GETSSL_VERSION="${1:-2.49}"
 
-REPOSITORY=aserv92/https-proxy
+export REPOSITORY=aserv92/https-proxy
+
+export TAG_TIMESTAMP=$(date +%Y-%m-%d-%H-%M-%S)
 
 docker buildx \
   build \
   --push \
   -t "${REPOSITORY}:latest" \
   -t "${REPOSITORY}:${GETSSL_VERSION}" \
-  -t "${REPOSITORY}:${GETSSL_VERSION}-$(date +%Y-%m-%d-%H-%M-%S)" \
+  -t "${REPOSITORY}:${GETSSL_VERSION}-${TAG_TIMESTAMP}" \
   --build-arg "GETSSL_VERSION=${GETSSL_VERSION}" \
   --platform linux/amd64,linux/arm64 \
   .
+
+build-and-push-route53

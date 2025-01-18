@@ -30,6 +30,17 @@ Some of the DNS scripts may have extra dependencies that are not currently suppo
   CPANEL_APITOKEN='1ABC2DEF3GHI4JKL5MNO6PQR7STU8VWX9YZA'
 ```
 
+##### AWS Route 53 Domain Validation
+Image tags containing `route53` are for use with AWS Route 53 domain validation, so it is assumed we are validating via DNS and the DNS provider is AWS Route 53.
+
+The following environment variables are no longer required for route 53 images:
+- `VALIDATE_VIA_DNS`
+- `DNS_PROVIDER`
+
+The following environment variables are required for route 53 images:
+- `AWS_ACCESS_KEY`
+- `AWS_SECRET_KEY`
+
 ### Environment variables
 
 #### Required variables
@@ -54,3 +65,5 @@ These variables are used to configure get-ssl. See https://github.com/srvrco/get
 - `SANS` A list of SANS and proxy to addresses to request the certificate for (ex: `www.yourdomain.com:http://yourwebsite.local,blog.yourwebsite.com:http://yourblog.local`)
 - `SSL_PROTOCOLS` List of SSL protocols to pass to nginx (ex: `TLSv1.2 TLSv1.3`)
 - `SSL_CIPHERS` Ciphers to pass to nginx (ex: `HIGH:!aNULL:!MD5`)
+- `AWS_ACCESS_KEY` See "AWS Route 53 Domain Validation" above
+- `AWS_SECRET_KEY` See "AWS Route 53 Domain Validation" above
