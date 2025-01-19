@@ -8,6 +8,6 @@ docker buildx \
   -t "${REPOSITORY}:${GETSSL_VERSION}-route53" \
   -t "${REPOSITORY}:${GETSSL_VERSION}-route53-$(date +%Y-%m-%d-$(git rev-parse --short HEAD))" \
   --build-arg "FROM_TAG=${GETSSL_VERSION}" \
-  --platform linux/amd64,linux/arm64 \
+  --platform ${PLATFORMS} \
   -f route53/Dockerfile \
   .

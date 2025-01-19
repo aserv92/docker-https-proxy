@@ -6,6 +6,8 @@ export GETSSL_VERSION="${1:-2.49}"
 
 export REPOSITORY=aserv92/https-proxy
 
+export PLATFORMS='linux/amd64,linux/arm64'
+
 docker buildx \
   build \
   --push \
@@ -13,7 +15,7 @@ docker buildx \
   -t "${REPOSITORY}:${GETSSL_VERSION}" \
   -t "${REPOSITORY}:${GETSSL_VERSION}-$(date +%Y-%m-%d-$(git rev-parse --short HEAD))" \
   --build-arg "GETSSL_VERSION=${GETSSL_VERSION}" \
-  --platform linux/amd64,linux/arm64 \
+  --platform ${PLATFORMS} \
   .
 
 build-and-push-route53
