@@ -1,7 +1,7 @@
 # aserv92/https-proxy:latest
 # aserv92/https-proxy:$GETSSL_VERSION
 # aserv92/https-proxy:$GETSSL_VERSION-$(date +%Y-%m-%d-%H-%M-%S)
-FROM alpine:3.22.1
+FROM alpine:3.23.3
 
 ARG GETSSL_VERSION='2.49'
 
